@@ -13,6 +13,7 @@
     clippy::wrong_pub_self_convention
 )]
 #![cfg_attr(test, allow(clippy::result_unwrap_used))]
+extern crate openssl;
 
 mod config;
 
@@ -43,6 +44,7 @@ use crate::migrations::MigrationError;
 use migrations_internals::TIMESTAMP_FORMAT;
 
 fn main() {
+    openssl_probe::init_ssl_cert_env_vars();
     use dotenv::dotenv;
     dotenv().ok();
 
